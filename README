@@ -1,0 +1,56 @@
+----- BUILD -----
+
+
+Build for debugging and run:
+	ant clean && ant debug
+
+Build for distribution:
+	All:
+		ant dist
+		(compressed, see below for formats: ant dist-compressed)
+	Source, including sources of third-party components:
+		ant dist-source-with-third-party-sources
+		(gzipped tarball: ant dist-source-with-third-party-sources-compressed)
+	Source:
+		ant dist-source
+		(gzipped tarball: ant dist-source-compressed)
+	Jar (All plattforms):
+		ant dist-jar
+		(gzipped tarball: ant dist-jar-compressed)
+	Windows (Windows executable):
+		ant dist-windows
+		(zip-archive: ant dist-windows-compressed
+
+Build documentation:
+	ant javadoc
+
+
+----- COMMAND LINE OPTIONS -----
+
+
+-Devopaint_home=<path>
+	Sets the evopaint home directory.
+	This is where EvoPaint expects the collections/ folder and stores temporary
+	files (eg. for video encoding).
+	
+	Use like this (from inside the base directory):
+	java -cp "build:lib/*" -Devopaint_home="/tmp" evopaint.EvoPaint
+	Or with relative path:
+	java -cp "build:lib/*" -Devopaint_home="../../" evopaint.EvoPaint
+
+
+----- CONTACT / HELP-----
+
+
+If you have problems that you cannot seem to solve, or just feel chatty
+go right ahead and drop me a line using:
+	
+	Markus Echterhoff <evopaint@markusechterhoff.com>
+
+
+----- KNOWN BUGS -----
+
+
+Saving/Loading in Agent Simulation Mode takes too long / does not work
+Saving an evolution is currently only feasible for smaller evolutions because of the sheer amount of data that is exported to a file before compressed. Yes, this sucks. I will come up with a streaming solution some day. Until then try and reduce the amount of painted pixels in evolutions. Cellular automatons are not affected and can be saved up to reasonable sizes without problems.
+

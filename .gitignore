@@ -1,0 +1,15 @@
+[Oo]ut/
+.idea
+*.iml
+.classpath
+.project
+.settings/
+.metadata
+bin/
+!misc/launch4j/bin
+build/
+dist/
+javadoc/
+collections/
+!misc/collections/
+Thumbs.db
