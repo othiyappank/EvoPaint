@@ -19,30 +19,6 @@
         </fileset>
     </path>
 
-    <target name="dist-source-with-third-party-sources" description="Create source distribution with third party sources">
-        <mkdir dir="${dist.dir}/source-with-third-party-sources"/>
-        <copy todir="${dist.dir}/source-with-third-party-sources">
-            <fileset dir="${project.dir}">
-                <include name="src/" />
-                <include name="lib/" />
-                <include name="misc/" />
-                <include name="doc/" />
-                <include name="LICENSE" />
-                <include name="README" />
-                <include name="build.xml" />
-            </fileset>
-        </copy>
-        <move tofile="${dist.dir}/EvoPaint-${version}-source-with-third-party-sources"
-            file="${dist.dir}/source-with-third-party-sources" />
-    </target>
-
-    <target name="dist-source-with-third-party-sources-compressed" depends="dist-source-with-third-party-sources" description="Create compressed source distribution with third party sources">
-        <tar destfile="${dist.dir}/EvoPaint-${version}-source-with-third-party-sources.tar" basedir="${dist.dir}/EvoPaint-${version}-source-with-third-party-sources"/>
-        <delete dir="${dist.dir}/EvoPaint-${version}-source-with-third-party-sources" />
-        <gzip destfile="${dist.dir}/EvoPaint-${version}-source-with-third-party-sources.tar.gz" src="${dist.dir}/EvoPaint-${version}-source-with-third-party-sources.tar"/>
-        <delete file="${dist.dir}/EvoPaint-${version}-source-with-third-party-sources.tar" />
-    </target>
-
     <target name="dist-source" description="Create source distribution">
         <mkdir dir="${dist.dir}/source"/>
         <copy todir="${dist.dir}/source">
@@ -54,8 +30,7 @@
                 <include name="LICENSE" />
                 <include name="README" />
                 <include name="build.xml" />
-                <exclude name="misc/third-party_sources/" />
-                <exclude name="misc/mencoder.exe" />
+                <exclude name="misc/mencoder*.exe" />
             </fileset>
         </copy>
         <move tofile="${dist.dir}/EvoPaint-${version}-source"
@@ -170,11 +145,11 @@
         <delete dir="${dist.dir}/EvoPaint-${version}-windows" />
     </target>
 
-    <target name="dist" depends="clean, dist-source-with-third-party-sources, dist-source, dist-jar, dist-windows" description="Create all distribution files">
+    <target name="dist" depends="clean, dist-source, dist-jar, dist-windows" description="Create all distribution files">
         <delete file="${dist.dir}/EvoPaint.jar" />
     </target>
 
-    <target name="dist-compressed" depends="clean, dist-source-with-third-party-sources-compressed, dist-source-compressed, dist-jar-compressed, dist-windows-compressed" description="Create all distribution files and compress them">
+    <target name="dist-compressed" depends="clean, dist-source-compressed, dist-jar-compressed, dist-windows-compressed" description="Create all distribution files and compress them">
     </target>
 
     <target name="javadoc"  description="Create javadoc">
